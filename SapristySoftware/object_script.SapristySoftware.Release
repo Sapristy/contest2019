@@ -1,0 +1,13 @@
+release/iplugin.o
+release/iplugininterface.o
+release/pluginlistviewmodel.o
+release/pluginmanager.o
+release/main.o
+release/mainwindow.o
+release/taskmanager.o
+release/taskmanagerplugin.o
+release/moc_pluginlistviewmodel.o
+release/moc_pluginmanager.o
+release/moc_mainwindow.o
+release/moc_taskmanager.o
+release/moc_taskmanagerplugin.o
