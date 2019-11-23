@@ -35,6 +35,8 @@ SOURCES += \
         taskmanagerplugin.cpp \
         ../../core/interfaces/iplugin.cpp \
         ../../core/interfaces/iplugininterface.cpp \
+        core/task.h \
+        widgets/taskmanagerwidget.cpp
 
 HEADERS += \
         taskmanager.h \
@@ -42,6 +44,9 @@ HEADERS += \
         taskmanagerplugin.h \
         ../../core/interfaces/iplugin.h \
         ../../core/interfaces/iplugininterface.h \
+        utils/taskmanagerconstants.h \
+        core/task.h \
+        widgets/taskmanagerwidget.h
 
 DISTFILES += TaskManager.json \
 
@@ -49,3 +54,6 @@ unix {
     target.path = $$[QT_INSTALL_PLUGINS]/generic
     INSTALLS += target
 }
+
+FORMS += \
+  widgets/taskmanagerwidget.ui

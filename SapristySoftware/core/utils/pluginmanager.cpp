@@ -1,7 +1,6 @@
 #include "pluginmanager.h"
 
 #include "constants.h"
-#include "../interfaces/iplugininterface.h"
 
 #include <QCoreApplication>
 #include <QPluginLoader>
@@ -31,7 +30,8 @@ void PluginManager::loadPlugin(QString name, uint id)
   QPluginLoader loader(name);
 
   if (auto plugin {loader.instance()}; plugin) {
-    qobject_cast<IPlugin*>(plugin)->createPlugin(id).get()->initializePlugin();
+    _runedPluginsList.append(qobject_cast<IPlugin*>(plugin)->createPlugin(id));
+    _runedPluginsList.last().get()->initializePlugin();
   }
 
 }
@@ -55,8 +55,6 @@ void PluginManager::initPluginsList()
 {
   _pluginList.clear();
 
-  qDebug() << QString("%1").arg(_pluginDir.path());
-
   QStringList fillesList {_pluginDir.entryList(QDir::Filter::Files, QDir::SortFlag::Name)};
 
   for (auto filleName : fillesList) {
@@ -64,5 +62,4 @@ void PluginManager::initPluginsList()
       _pluginList.append(filleName);
   }
 
-  qDebug() << QString("%1").arg(_pluginList.length());
 }

@@ -4,11 +4,12 @@
 #include <QObject>
 #include <QString>
 #include <QDateTime>
+#include <QThread>
+#include <QSharedPointer>
 
-#include "../utils/constants.h"
+#include "../utils/taskManagerconstants.h"
 
 namespace TaskManager {
-namespace Core {
 
 class Task : public QObject
 {
@@ -25,9 +26,12 @@ class Task : public QObject
   QString _name;
   QString _description;
 
+  QSharedPointer<QThread> _taskThread;
+
 
 public:
   explicit Task(QObject *parent = nullptr);
+  ~Task();
 
 signals:
 
@@ -63,7 +67,6 @@ public slots:
   void setPeriodicity(const Utils::Constants::Periodicity &periodicity);
 };
 
-}
 }
 
 #endif // TASK_H

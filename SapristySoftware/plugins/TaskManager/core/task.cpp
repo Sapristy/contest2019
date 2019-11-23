@@ -2,12 +2,22 @@
 
 #include <QThread>
 
-using namespace TaskManager::Core;
+using namespace TaskManager;
 using namespace TaskManager::Utils;
 
 Task::Task(QObject *parent) : QObject(parent)
 {
+  this->moveToThread(_taskThread.get());
+  connect(_taskThread.get(), &QThread::finished, _taskThread.get(), &QThread::deleteLater);
+  _taskThread->start();
+}
 
+Task::~Task()
+{
+  _taskThread->quit();
+
+  if (QThread::currentThread() != this->thread())
+    _taskThread->wait();
 }
 
 QDateTime Task::getStartDateTime() const

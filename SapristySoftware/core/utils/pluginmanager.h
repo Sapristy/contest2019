@@ -3,6 +3,8 @@
 
 #include <QDir>
 
+#include "../interfaces/iplugininterface.h"
+
 namespace Core {
 namespace Utils {
 
@@ -13,6 +15,7 @@ class PluginManager : public QObject
   QDir _appDir;
   QDir _pluginDir;
   QStringList _pluginList;
+  QList<QSharedPointer<Interfaces::IPluginInterface>> _runedPluginsList;
 
 public:
   PluginManager();

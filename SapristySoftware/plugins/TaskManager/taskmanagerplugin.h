@@ -4,10 +4,12 @@
 #include <QObject>
 #include <QSharedPointer>
 #include <QMenu>
+#include <QThread>
 
 #include "taskmanagerexport.h"
-
-#include <../../core/interfaces/iplugininterface.h>
+#include "core/task.h"
+#include "../../core/interfaces/iplugininterface.h"
+#include "widgets/taskmanagerwidget.h"
 
 namespace TaskManager {
 
@@ -16,7 +18,10 @@ class TASK_MANAGER_EXPORT TaskManagerPlugin : public QObject, public Core::Inter
   Q_OBJECT
 
   QString _name;
-  QString _id;
+  uint _id;
+  QSharedPointer<QThread> _taskManagerThread;
+  QSharedPointer<TaskManagerWidget> _taskManagerWidget;
+  QList<QSharedPointer<Task>> _tasksList;
 
 public:
   explicit TaskManagerPlugin(QObject *parent = nullptr);
@@ -52,6 +57,7 @@ public:
 signals:
 
 public slots:
+  void createTask();
 };
 
 }
