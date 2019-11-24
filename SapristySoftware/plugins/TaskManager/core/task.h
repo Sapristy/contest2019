@@ -7,7 +7,7 @@
 #include <QThread>
 #include <QSharedPointer>
 
-#include "../utils/taskManagerconstants.h"
+#include "../utils/taskmanagerconstants.h"
 
 namespace TaskManager {
 
@@ -28,6 +28,7 @@ class Task : public QObject
 
   QSharedPointer<QThread> _taskThread;
 
+  uint _id;
 
 public:
   explicit Task(QObject *parent = nullptr);
@@ -65,6 +66,9 @@ public slots:
 
   Utils::Constants::Periodicity getPeriodicity() const;
   void setPeriodicity(const Utils::Constants::Periodicity &periodicity);
+
+  uint getId() const;
+  void setId(const uint &id);
 };
 
 }

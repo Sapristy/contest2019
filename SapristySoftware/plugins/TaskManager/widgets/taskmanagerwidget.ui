@@ -219,14 +219,9 @@
       <attribute name="title">
        <string>Редактирование</string>
       </attribute>
-     </widget>
-     <widget class="QWidget" name="Viewer">
-      <attribute name="title">
-       <string>Просмотр</string>
-      </attribute>
-      <layout class="QGridLayout" name="gridLayout_8">
+      <layout class="QGridLayout" name="gridLayout_9">
        <item row="0" column="0">
-        <widget class="QTableWidget" name="viewTableWidget">
+        <widget class="QTableWidget" name="editorTableWidget">
          <property name="layoutDirection">
           <enum>Qt::LeftToRight</enum>
          </property>
@@ -292,6 +287,23 @@
            <set>AlignCenter</set>
           </property>
          </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="Viewer">
+      <attribute name="title">
+       <string>Просмотр</string>
+      </attribute>
+      <layout class="QGridLayout" name="gridLayout_8">
+       <item row="0" column="0">
+        <widget class="QTableView" name="viewerTableView">
+         <attribute name="horizontalHeaderCascadingSectionResizes">
+          <bool>true</bool>
+         </attribute>
+         <attribute name="horizontalHeaderStretchLastSection">
+          <bool>true</bool>
+         </attribute>
         </widget>
        </item>
       </layout>

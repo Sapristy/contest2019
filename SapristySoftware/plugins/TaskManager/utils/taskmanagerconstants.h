@@ -25,6 +25,7 @@ enum class Status : int
 
 const QString taskManagerName { "Менеджер задач" };
 const uint taskManagerId { 0 };
+const int tasksViewerCollumnCount {11};
 
 }
 }

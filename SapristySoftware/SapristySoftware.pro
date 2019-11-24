@@ -27,7 +27,6 @@ CONFIG += c++17
 SOURCES += \
         core/interfaces/iplugin.cpp \
         core/interfaces/iplugininterface.cpp \
-        core/utils/pluginlistviewmodel.cpp \
         core/utils/pluginmanager.cpp \
         main.cpp \
         mainwindow.cpp \
@@ -36,7 +35,6 @@ HEADERS += \
         core/interfaces/iplugin.h \
         core/interfaces/iplugininterface.h \
         core/utils/constants.h \
-        core/utils/pluginlistviewmodel.h \
         core/utils/pluginmanager.h \
         mainwindow.h \
         ui_mainwindow.h

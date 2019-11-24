@@ -35,8 +35,9 @@ SOURCES += \
         taskmanagerplugin.cpp \
         ../../core/interfaces/iplugin.cpp \
         ../../core/interfaces/iplugininterface.cpp \
-        core/task.h \
-        widgets/taskmanagerwidget.cpp
+        core/task.cpp \
+        widgets/taskmanagerwidget.cpp \
+        widgets/viewermodel.cpp
 
 HEADERS += \
         taskmanager.h \
@@ -46,7 +47,8 @@ HEADERS += \
         ../../core/interfaces/iplugininterface.h \
         utils/taskmanagerconstants.h \
         core/task.h \
-        widgets/taskmanagerwidget.h
+        widgets/taskmanagerwidget.h \
+        widgets/viewermodel.h
 
 DISTFILES += TaskManager.json \
 

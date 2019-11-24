@@ -2,20 +2,23 @@
 #include "ui_taskmanagerwidget.h"
 
 #include <QAbstractButton>
+#include <QStringList>
+
+#include "viewermodel.h"
 
 TaskManagerWidget::TaskManagerWidget(QWidget *parent) :
   QWidget(parent),
   ui(new Ui::TaskManagerWidget)
 {
   ui->setupUi(this);
-  qobject_cast<QTableWidget>(ui->Viewer->layout()->takeAt(0)->widget())
-      .horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+  ui->editorTableWidget->horizontalHeader()->resizeSections(QHeaderView::ResizeToContents);
+  ui->viewerTableView->setModel(new ViewerModel(_tasksList, this));
 
-  _periodicityButtonGroup.addButton(qobject_cast<QAbstractButton*>(_getPeriodicityGroupBox().layout()->takeAt(0)->widget()));
-  _periodicityButtonGroup.addButton(qobject_cast<QAbstractButton*>(_getPeriodicityGroupBox().layout()->takeAt(1)->widget()));
-  _periodicityButtonGroup.addButton(qobject_cast<QAbstractButton*>(_getPeriodicityGroupBox().layout()->takeAt(2)->widget()));
-  _periodicityButtonGroup.addButton(qobject_cast<QAbstractButton*>(_getPeriodicityGroupBox().layout()->takeAt(3)->widget()));
-  _periodicityButtonGroup.addButton(qobject_cast<QAbstractButton*>(_getPeriodicityGroupBox().layout()->takeAt(4)->widget()));
+  _periodicityButtonGroup.addButton(ui->onceperiodicityRadioButton);
+  _periodicityButtonGroup.addButton(ui->dailyPeriodicityRadioButton);
+  _periodicityButtonGroup.addButton(ui->weeklyPeriodicityRadioButton);
+  _periodicityButtonGroup.addButton(ui->nonthlyPeriodicityRadioButton);
+  _periodicityButtonGroup.addButton(ui->annualyPeriodicityRadioButton);
 
   connect(&_periodicityButtonGroup,
           static_cast<void(QButtonGroup::*)(QAbstractButton*)>(&QButtonGroup::buttonClicked),
@@ -23,6 +26,16 @@ TaskManagerWidget::TaskManagerWidget(QWidget *parent) :
           [this](QAbstractButton* abstractButton) {
             updatePeriodicity(qobject_cast<QRadioButton*>(abstractButton));
           } );
+
+  connect( this,
+           &TaskManagerWidget::taskListHasUpdated,
+           qobject_cast<ViewerModel*>(ui->viewerTableView->model()),
+           [this](){
+    qobject_cast<ViewerModel*>(ui->viewerTableView->model())->updateTable(_tasksList);
+  }
+  );
+
+  updatePeriodicity(ui->onceperiodicityRadioButton);
 }
 
 TaskManagerWidget::~TaskManagerWidget()
@@ -32,17 +45,17 @@ TaskManagerWidget::~TaskManagerWidget()
 
 QString TaskManagerWidget::getCreatorTaskName()
 {
-  return _getTaskNameEdit().text();
+  return  ui->taskNameEdit->text();
 }
 
 QString TaskManagerWidget::getCreatorTaskGroupName()
 {
-  return _getTaskGroupNameEdit().text();
+  return ui->groupNameLineEdit->text();
 }
 
 QString TaskManagerWidget::getCreatorTaskDescription()
 {
-  return _getTaskDescriptionEdit().toPlainText();
+  return ui->descriptionEdit->toPlainText();
 }
 
 TaskManager::Utils::Constants::Periodicity TaskManagerWidget::getCreatorTaskPeriodicity()
@@ -52,60 +65,33 @@ TaskManager::Utils::Constants::Periodicity TaskManagerWidget::getCreatorTaskPeri
 
 QDateTime TaskManagerWidget::getCreatorTaskCreationTime()
 {
-  return _getTaskCreationDateTime().dateTime();
+  return ui->startDateTimeEdit->dateTime();
 }
 
 QDateTime TaskManagerWidget::getCreatorTaskCloseTime()
 {
-  return _getTaskCloseDateTime().dateTime();
+  return ui->finishDateTimeEdit->dateTime();
 }
 
-QLineEdit TaskManagerWidget::_getTaskNameEdit()
+QList<QSharedPointer<TaskManager::Task> > TaskManagerWidget::getTasksList() const
 {
-  return qobject_cast<QLineEdit>(
-           qobject_cast<QGroupBox>(
-             qobject_cast<QGroupBox>(ui->Creator->layout()->takeAt(0)->widget())
-             .layout()->takeAt(0)->widget())
-           .layout()->takeAt(0)->widget());
+  return _tasksList;
 }
 
-QLineEdit TaskManagerWidget::_getTaskGroupNameEdit()
+void TaskManagerWidget::setTasksList(const QList<QSharedPointer<TaskManager::Task> > &tasksList)
 {
-  return qobject_cast<QLineEdit>(
-           qobject_cast<QGroupBox>(
-             qobject_cast<QGroupBox>(ui->Creator->layout()->takeAt(0)->widget())
-             .layout()->takeAt(1)->widget())
-           .layout()->takeAt(0)->widget());
-}
+//  _tasksList.clear();
 
-QTextEdit TaskManagerWidget::_getTaskDescriptionEdit()
-{
-  return qobject_cast<QTextEdit>(
-           qobject_cast<QGroupBox>(
-             qobject_cast<QGroupBox>(ui->Creator->layout()->takeAt(0)->widget())
-             .layout()->takeAt(3)->widget())
-           .layout()->takeAt(0)->widget());
-}
+//  for(auto i : tasksList)
+//    _tasksList.append(qobject_cast<QSharedPointer<TaskManager::Task>>(i));
 
-QGroupBox TaskManagerWidget::_getPeriodicityGroupBox()
-{
-  return qobject_cast<QGroupBox>(
-           qobject_cast<QGroupBox>(ui->Creator->layout()->takeAt(0)->widget())
-        .layout()->takeAt(2)->widget());
-}
+//  QList<QSharedPointer<QObject>> tempList;
 
-QDateTimeEdit TaskManagerWidget::_getTaskCreationDateTime()
-{
-  return qobject_cast<QDateTimeEdit>(
-           qobject_cast<QGroupBox>(ui->Creator->layout()->takeAt(1)->widget())
-         .layout()->takeAt(0)->widget());
-}
+//  for (auto i : _tasksList)
+//    tempList.append(qobject_cast<QSharedPointer<QObject>>(i));
+  _tasksList = tasksList;
 
-QDateTimeEdit TaskManagerWidget::_getTaskCloseDateTime()
-{
-  return qobject_cast<QDateTimeEdit>(
-           qobject_cast<QGroupBox>(ui->Creator->layout()->takeAt(2)->widget())
-         .layout()->takeAt(0)->widget());
+  emit taskListHasUpdated();
 }
 
 void TaskManagerWidget::updatePeriodicity(QRadioButton* button)
@@ -125,5 +111,5 @@ void TaskManagerWidget::updatePeriodicity(QRadioButton* button)
 
 void TaskManagerWidget::on_createTaskPushButton_clicked()
 {
-    emit createTask();
+  emit createTask();
 }

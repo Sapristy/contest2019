@@ -1,0 +1,12 @@
+debug/taskmanager.o
+debug/taskmanagerplugin.o
+debug/iplugin.o
+debug/iplugininterface.o
+debug/task.o
+debug/taskmanagerwidget.o
+debug/viewermodel.o
+debug/moc_taskmanager.o
+debug/moc_taskmanagerplugin.o
+debug/moc_task.o
+debug/moc_taskmanagerwidget.o
+debug/moc_viewermodel.o

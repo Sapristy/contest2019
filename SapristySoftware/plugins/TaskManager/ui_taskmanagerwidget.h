@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'taskmanagerwidget.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.3
+** Created by: Qt User Interface Compiler version 5.12.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -21,6 +21,7 @@
 #include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QTabWidget>
+#include <QtWidgets/QTableView>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
@@ -66,9 +67,11 @@ public:
     QSpacerItem *horizontalSpacer;
     QSpacerItem *horizontalSpacer_3;
     QWidget *Editor;
+    QGridLayout *gridLayout_9;
+    QTableWidget *editorTableWidget;
     QWidget *Viewer;
     QGridLayout *gridLayout_8;
-    QTableWidget *viewTableWidget;
+    QTableView *viewerTableView;
     QSpacerItem *horizontalSpacer_5;
     QSpacerItem *horizontalSpacer_6;
 
@@ -219,40 +222,49 @@ public:
         tabWidget->addTab(Creator, QString());
         Editor = new QWidget();
         Editor->setObjectName(QString::fromUtf8("Editor"));
+        gridLayout_9 = new QGridLayout(Editor);
+        gridLayout_9->setObjectName(QString::fromUtf8("gridLayout_9"));
+        editorTableWidget = new QTableWidget(Editor);
+        if (editorTableWidget->columnCount() < 4)
+            editorTableWidget->setColumnCount(4);
+        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        __qtablewidgetitem->setTextAlignment(Qt::AlignCenter);
+        editorTableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+        __qtablewidgetitem1->setTextAlignment(Qt::AlignCenter);
+        editorTableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
+        __qtablewidgetitem2->setTextAlignment(Qt::AlignCenter);
+        editorTableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
+        __qtablewidgetitem3->setTextAlignment(Qt::AlignCenter);
+        editorTableWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
+        editorTableWidget->setObjectName(QString::fromUtf8("editorTableWidget"));
+        editorTableWidget->setLayoutDirection(Qt::LeftToRight);
+        editorTableWidget->setAutoFillBackground(false);
+        editorTableWidget->horizontalHeader()->setVisible(false);
+        editorTableWidget->horizontalHeader()->setCascadingSectionResizes(true);
+        editorTableWidget->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
+        editorTableWidget->horizontalHeader()->setStretchLastSection(true);
+        editorTableWidget->verticalHeader()->setVisible(false);
+        editorTableWidget->verticalHeader()->setCascadingSectionResizes(false);
+        editorTableWidget->verticalHeader()->setHighlightSections(false);
+        editorTableWidget->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
+        editorTableWidget->verticalHeader()->setStretchLastSection(true);
+
+        gridLayout_9->addWidget(editorTableWidget, 0, 0, 1, 1);
+
         tabWidget->addTab(Editor, QString());
         Viewer = new QWidget();
         Viewer->setObjectName(QString::fromUtf8("Viewer"));
         gridLayout_8 = new QGridLayout(Viewer);
         gridLayout_8->setObjectName(QString::fromUtf8("gridLayout_8"));
-        viewTableWidget = new QTableWidget(Viewer);
-        if (viewTableWidget->columnCount() < 4)
-            viewTableWidget->setColumnCount(4);
-        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
-        __qtablewidgetitem->setTextAlignment(Qt::AlignCenter);
-        viewTableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
-        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
-        __qtablewidgetitem1->setTextAlignment(Qt::AlignCenter);
-        viewTableWidget->setHorizontalHeaderItem(1, __qtablewidgetitem1);
-        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
-        __qtablewidgetitem2->setTextAlignment(Qt::AlignCenter);
-        viewTableWidget->setHorizontalHeaderItem(2, __qtablewidgetitem2);
-        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
-        __qtablewidgetitem3->setTextAlignment(Qt::AlignCenter);
-        viewTableWidget->setHorizontalHeaderItem(3, __qtablewidgetitem3);
-        viewTableWidget->setObjectName(QString::fromUtf8("viewTableWidget"));
-        viewTableWidget->setLayoutDirection(Qt::LeftToRight);
-        viewTableWidget->setAutoFillBackground(false);
-        viewTableWidget->horizontalHeader()->setVisible(false);
-        viewTableWidget->horizontalHeader()->setCascadingSectionResizes(true);
-        viewTableWidget->horizontalHeader()->setProperty("showSortIndicator", QVariant(true));
-        viewTableWidget->horizontalHeader()->setStretchLastSection(true);
-        viewTableWidget->verticalHeader()->setVisible(false);
-        viewTableWidget->verticalHeader()->setCascadingSectionResizes(false);
-        viewTableWidget->verticalHeader()->setHighlightSections(false);
-        viewTableWidget->verticalHeader()->setProperty("showSortIndicator", QVariant(false));
-        viewTableWidget->verticalHeader()->setStretchLastSection(true);
+        viewerTableView = new QTableView(Viewer);
+        viewerTableView->setObjectName(QString::fromUtf8("viewerTableView"));
+        viewerTableView->horizontalHeader()->setCascadingSectionResizes(true);
+        viewerTableView->horizontalHeader()->setStretchLastSection(true);
 
-        gridLayout_8->addWidget(viewTableWidget, 0, 0, 1, 1);
+        gridLayout_8->addWidget(viewerTableView, 0, 0, 1, 1);
 
         tabWidget->addTab(Viewer, QString());
 
@@ -294,15 +306,15 @@ public:
         startDateTimeGroupBox->setTitle(QApplication::translate("TaskManagerWidget", "\320\224\320\260\321\202\320\260 \320\270 \320\262\321\200\320\265\320\274\321\217 \320\275\320\260\321\207\320\260\320\273\320\260", nullptr));
         chooseStartDateTimePushButton->setText(QApplication::translate("TaskManagerWidget", "...", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(Creator), QApplication::translate("TaskManagerWidget", "\320\241\320\276\320\267\320\264\320\260\320\275\320\270\320\265", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(Editor), QApplication::translate("TaskManagerWidget", "\320\240\320\265\320\264\320\260\320\272\321\202\320\270\321\200\320\276\320\262\320\260\320\275\320\270\320\265", nullptr));
-        QTableWidgetItem *___qtablewidgetitem = viewTableWidget->horizontalHeaderItem(0);
+        QTableWidgetItem *___qtablewidgetitem = editorTableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("TaskManagerWidget", "\342\204\226", nullptr));
-        QTableWidgetItem *___qtablewidgetitem1 = viewTableWidget->horizontalHeaderItem(1);
+        QTableWidgetItem *___qtablewidgetitem1 = editorTableWidget->horizontalHeaderItem(1);
         ___qtablewidgetitem1->setText(QApplication::translate("TaskManagerWidget", "\320\235\320\260\320\267\320\262\320\260\320\275\320\270\320\265", nullptr));
-        QTableWidgetItem *___qtablewidgetitem2 = viewTableWidget->horizontalHeaderItem(2);
+        QTableWidgetItem *___qtablewidgetitem2 = editorTableWidget->horizontalHeaderItem(2);
         ___qtablewidgetitem2->setText(QApplication::translate("TaskManagerWidget", "\320\224\320\260\321\202\320\260 \320\270 \320\262\321\200\320\265\320\274\321\217 \320\275\320\260\321\207\320\260\320\273\320\260", nullptr));
-        QTableWidgetItem *___qtablewidgetitem3 = viewTableWidget->horizontalHeaderItem(3);
+        QTableWidgetItem *___qtablewidgetitem3 = editorTableWidget->horizontalHeaderItem(3);
         ___qtablewidgetitem3->setText(QApplication::translate("TaskManagerWidget", "\320\224\320\260\321\202\320\260 \320\270 \320\262\321\200\320\265\320\274\321\217 \320\276\320\272\320\276\320\275\321\207\320\260\320\275\320\270\321\217", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(Editor), QApplication::translate("TaskManagerWidget", "\320\240\320\265\320\264\320\260\320\272\321\202\320\270\321\200\320\276\320\262\320\260\320\275\320\270\320\265", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(Viewer), QApplication::translate("TaskManagerWidget", "\320\237\321\200\320\276\321\201\320\274\320\276\321\202\321\200", nullptr));
     } // retranslateUi
 

@@ -1,0 +1,12 @@
+release/taskmanager.o
+release/taskmanagerplugin.o
+release/iplugin.o
+release/iplugininterface.o
+release/task.o
+release/taskmanagerwidget.o
+release/viewermodel.o
+release/moc_taskmanager.o
+release/moc_taskmanagerplugin.o
+release/moc_task.o
+release/moc_taskmanagerwidget.o
+release/moc_viewermodel.o

@@ -1,8 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "core/utils/pluginlistviewmodel.h"
-
 #include <QStringListModel>
 #include <QModelIndex>
 

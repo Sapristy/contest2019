@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'task.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.3)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.5)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'task.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.12.3. It"
+#error "This file was generated using the moc from 5.12.5. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_TaskManager__Task_t {
-    QByteArrayData data[34];
-    char stringdata0[476];
+    QByteArrayData data[37];
+    char stringdata0[491];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -64,7 +64,10 @@ QT_MOC_LITERAL(29, 397, 6), // "status"
 QT_MOC_LITERAL(30, 404, 14), // "getPeriodicity"
 QT_MOC_LITERAL(31, 419, 29), // "Utils::Constants::Periodicity"
 QT_MOC_LITERAL(32, 449, 14), // "setPeriodicity"
-QT_MOC_LITERAL(33, 464, 11) // "periodicity"
+QT_MOC_LITERAL(33, 464, 11), // "periodicity"
+QT_MOC_LITERAL(34, 476, 5), // "getId"
+QT_MOC_LITERAL(35, 482, 5), // "setId"
+QT_MOC_LITERAL(36, 488, 2) // "id"
 
     },
     "TaskManager::Task\0getStartDateTime\0\0"
@@ -80,7 +83,8 @@ QT_MOC_LITERAL(33, 464, 11) // "periodicity"
     "getStatus\0Utils::Constants::Status\0"
     "setStatus\0status\0getPeriodicity\0"
     "Utils::Constants::Periodicity\0"
-    "setPeriodicity\0periodicity"
+    "setPeriodicity\0periodicity\0getId\0setId\0"
+    "id"
 };
 #undef QT_MOC_LITERAL
 
@@ -90,7 +94,7 @@ static const uint qt_meta_data_TaskManager__Task[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      20,   14, // methods
+      22,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -98,26 +102,28 @@ static const uint qt_meta_data_TaskManager__Task[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,  114,    2, 0x0a /* Public */,
-       3,    1,  115,    2, 0x0a /* Public */,
-       5,    0,  118,    2, 0x0a /* Public */,
-       6,    1,  119,    2, 0x0a /* Public */,
-       8,    0,  122,    2, 0x0a /* Public */,
-       9,    1,  123,    2, 0x0a /* Public */,
-      11,    0,  126,    2, 0x0a /* Public */,
-      12,    1,  127,    2, 0x0a /* Public */,
-      14,    0,  130,    2, 0x0a /* Public */,
-      15,    1,  131,    2, 0x0a /* Public */,
-      17,    0,  134,    2, 0x0a /* Public */,
-      18,    1,  135,    2, 0x0a /* Public */,
-      20,    0,  138,    2, 0x0a /* Public */,
-      21,    1,  139,    2, 0x0a /* Public */,
-      23,    0,  142,    2, 0x0a /* Public */,
-      24,    1,  143,    2, 0x0a /* Public */,
-      26,    0,  146,    2, 0x0a /* Public */,
-      28,    1,  147,    2, 0x0a /* Public */,
-      30,    0,  150,    2, 0x0a /* Public */,
-      32,    1,  151,    2, 0x0a /* Public */,
+       1,    0,  124,    2, 0x0a /* Public */,
+       3,    1,  125,    2, 0x0a /* Public */,
+       5,    0,  128,    2, 0x0a /* Public */,
+       6,    1,  129,    2, 0x0a /* Public */,
+       8,    0,  132,    2, 0x0a /* Public */,
+       9,    1,  133,    2, 0x0a /* Public */,
+      11,    0,  136,    2, 0x0a /* Public */,
+      12,    1,  137,    2, 0x0a /* Public */,
+      14,    0,  140,    2, 0x0a /* Public */,
+      15,    1,  141,    2, 0x0a /* Public */,
+      17,    0,  144,    2, 0x0a /* Public */,
+      18,    1,  145,    2, 0x0a /* Public */,
+      20,    0,  148,    2, 0x0a /* Public */,
+      21,    1,  149,    2, 0x0a /* Public */,
+      23,    0,  152,    2, 0x0a /* Public */,
+      24,    1,  153,    2, 0x0a /* Public */,
+      26,    0,  156,    2, 0x0a /* Public */,
+      28,    1,  157,    2, 0x0a /* Public */,
+      30,    0,  160,    2, 0x0a /* Public */,
+      32,    1,  161,    2, 0x0a /* Public */,
+      34,    0,  164,    2, 0x0a /* Public */,
+      35,    1,  165,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::QDateTime,
@@ -140,6 +146,8 @@ static const uint qt_meta_data_TaskManager__Task[] = {
     QMetaType::Void, 0x80000000 | 27,   29,
     0x80000000 | 31,
     QMetaType::Void, 0x80000000 | 31,   33,
+    QMetaType::UInt,
+    QMetaType::Void, QMetaType::UInt,   36,
 
        0        // eod
 };
@@ -180,6 +188,9 @@ void TaskManager::Task::qt_static_metacall(QObject *_o, QMetaObject::Call _c, in
         case 18: { Utils::Constants::Periodicity _r = _t->getPeriodicity();
             if (_a[0]) *reinterpret_cast< Utils::Constants::Periodicity*>(_a[0]) = std::move(_r); }  break;
         case 19: _t->setPeriodicity((*reinterpret_cast< const Utils::Constants::Periodicity(*)>(_a[1]))); break;
+        case 20: { uint _r = _t->getId();
+            if (_a[0]) *reinterpret_cast< uint*>(_a[0]) = std::move(_r); }  break;
+        case 21: _t->setId((*reinterpret_cast< const uint(*)>(_a[1]))); break;
         default: ;
         }
     }
@@ -214,13 +225,13 @@ int TaskManager::Task::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 20)
+        if (_id < 22)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 20;
+        _id -= 22;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 20)
+        if (_id < 22)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 20;
+        _id -= 22;
     }
     return _id;
 }

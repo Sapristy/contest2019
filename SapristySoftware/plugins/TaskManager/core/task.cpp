@@ -5,8 +5,19 @@
 using namespace TaskManager;
 using namespace TaskManager::Utils;
 
+uint Task::getId() const
+{
+  return _id;
+}
+
+void Task::setId(const uint &id)
+{
+  _id = id;
+}
+
 Task::Task(QObject *parent) : QObject(parent)
 {
+  _taskThread.reset(new QThread());
   this->moveToThread(_taskThread.get());
   connect(_taskThread.get(), &QThread::finished, _taskThread.get(), &QThread::deleteLater);
   _taskThread->start();

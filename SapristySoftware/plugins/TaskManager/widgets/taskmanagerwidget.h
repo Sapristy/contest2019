@@ -9,6 +9,7 @@
 #include <QRadioButton>
 #include <QTextEdit>
 
+#include "core/task.h"
 #include <utils/taskmanagerconstants.h>
 
 namespace Ui {
@@ -37,19 +38,17 @@ private:
 
   TaskManager::Utils::Constants::Periodicity _periodicity;
 
-  QLineEdit _getTaskNameEdit();
-  QLineEdit _getTaskGroupNameEdit();
-  QTextEdit _getTaskDescriptionEdit();
-  QGroupBox _getPeriodicityGroupBox();
-  QDateTimeEdit _getTaskCreationDateTime();
-  QDateTimeEdit _getTaskCloseDateTime();
+  QList<QSharedPointer<TaskManager::Task>> _tasksList;
 
 signals:
   void createTask();
+  void taskListHasUpdated();
 
 public slots:
-  void updateViewContent();
   void updatePeriodicity(QRadioButton* button);
+  QList<QSharedPointer<TaskManager::Task> > getTasksList() const;
+  void setTasksList(const QList<QSharedPointer<TaskManager::Task>> &tasksList);
+
 private slots:
   void on_createTaskPushButton_clicked();
 };

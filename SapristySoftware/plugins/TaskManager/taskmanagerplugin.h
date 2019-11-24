@@ -19,6 +19,7 @@ class TASK_MANAGER_EXPORT TaskManagerPlugin : public QObject, public Core::Inter
 
   QString _name;
   uint _id;
+  uint _taskId {0};
   QSharedPointer<QThread> _taskManagerThread;
   QSharedPointer<TaskManagerWidget> _taskManagerWidget;
   QList<QSharedPointer<Task>> _tasksList;
@@ -55,6 +56,7 @@ public:
   virtual void createMenu() override;
 
 signals:
+  void taskListUpdated();
 
 public slots:
   void createTask();
